@@ -2,7 +2,9 @@ package com.pm.authservice.service;
 
 import com.pm.authservice.dto.LoginRequestDTO;
 import com.pm.authservice.model.User;
+import com.pm.authservice.util.JwtUtil;
 import jakarta.validation.Valid;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -13,8 +15,14 @@ public class AuthService {
 
 
     private final UserService userService;
-    public AuthService(UserService userService) {
+    private final PasswordEncoder passwordEncoder; // it is class variable and spring will inject
+    // it and make an object of it and assign it to this variable
+    private final JwtUtil jwtUtil ;
+
+    public AuthService(UserService userService, PasswordEncoder passwordEncoder , JwtUtil jwtUtil) {
+        this.jwtUtil = jwtUtil;
         this.userService = userService;
+        this.passwordEncoder = passwordEncoder;
     }
 
     public Optional<String> authenticate(LoginRequestDTO loginRequestDTO) {
@@ -27,7 +35,11 @@ public class AuthService {
         Optional<String> token= userService.findByEmail(loginRequestDTO.getEmail())
                 .filter(u -> passwordEncoder.matches(loginRequestDTO.getPassword(), u.getPassword()))
                 .map(u ->jwtUtil.generateToken(u.getEmail(), u.getRole()));
-
+//  so what will happen here is that if the user is found by email , then we will check if the password
+//  matches the hashed password in the database using the passwordEncoder.matches method
+//  if the password matches , then we will generate a token using the jwtUtil.generateToken method
+//  and we will return the token wrapped in an Optional
+//  if the user is not found or the password does not match , then we will return an empty Optional
 
         return token;
 
