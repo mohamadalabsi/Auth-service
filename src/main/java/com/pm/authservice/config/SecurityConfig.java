@@ -31,7 +31,8 @@ public class SecurityConfig {
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
-
+//  we have to have a bean here so we can use this password encoder in our auth service to hash
+//  the passwords and to check if the password , it is different than other classes and interfaces because it is a bean that we need to use in other classes so we need to define it here and spring will inject it wherever we need it
     }
 
 }
