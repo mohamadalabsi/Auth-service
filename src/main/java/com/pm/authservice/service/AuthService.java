@@ -43,6 +43,7 @@ public class AuthService {
 
         return token;
 
-// so we generated the token , now we have to validate it , so the user can use it to access other endpoints in the application
+// so we generated the token , now we have to validate it , so the user can use it to access
+// other endpoints in the application
     }
 }
