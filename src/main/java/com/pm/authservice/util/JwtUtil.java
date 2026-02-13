@@ -19,7 +19,8 @@ public class JwtUtil {
     private final Key secretKey;
 
 
-    public JwtUtil(@Value("${jwt.secret}") String secret) { // injecting secretKey from env variable
+    public JwtUtil(@Value("${jwt.secret}") String secret) { //! injecting secretKey from env
+        // variable
 //        we don't want to store the secret key as text in the code , it will be a security risk
         byte[] keyBytes = Base64.getDecoder()
                 .decode(secret.getBytes(StandardCharsets.UTF_8)); // converting the secret string to byte array

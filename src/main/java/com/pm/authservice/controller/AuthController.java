@@ -38,4 +38,9 @@ public class AuthController {
 
 
     }
+
+
+//    now we want to validate the token that we generated in the login method , so we can use it
+//    to access other endpoints in the application and then we can integrating auth service with
+//    api gateway
 }
