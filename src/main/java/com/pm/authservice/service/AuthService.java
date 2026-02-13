@@ -46,4 +46,14 @@ public class AuthService {
 // so we generated the token , now we have to validate it , so the user can use it to access
 // other endpoints in the application
     }
+
+    public boolean validateToken(String token) {
+        try {
+             jwtUtil.validateToken(token); // if valid then it will return true and if not valid
+            // it will throw an exception and we will catch it down
+            return true;
+        } catch (Exception e) {
+            return false; // if there is any exception , then the token is not valid
+        }
+    }
 }

@@ -40,4 +40,8 @@ public class JwtUtil {
         // going to assign it using the secret key , and squish everything down into nice single
         // string that will form our JWT token
     }
+
+    public void validateToken(String token) {
+
+    }
 }
