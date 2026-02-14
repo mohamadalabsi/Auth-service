@@ -53,7 +53,8 @@ public class AuthService {
             // it will throw an exception and we will catch it down
             return true;
         } catch (Exception e) {
-            return false; // if there is any exception , then the token is not valid
+            return false; // if there is any exception , then the token is not valid and return
+            // false
         }
     }
 }
